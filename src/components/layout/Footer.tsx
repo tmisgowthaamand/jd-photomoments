@@ -81,10 +81,10 @@ export function Footer() {
                 info@jdphotomoments.com
               </a>
               <a
-                href="tel:+1234567890"
+                href="tel:+91 8939787600"
                 className="text-sm text-background/50 hover:text-background transition-colors"
               >
-                +1 (234) 567-890
+                +91 8939787600
               </a>
             </div>
           </div>
