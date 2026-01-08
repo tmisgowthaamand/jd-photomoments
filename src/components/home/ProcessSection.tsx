@@ -46,25 +46,27 @@ export function ProcessSection() {
         </div>
 
         {/* Process Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-4">
+        <div className="flex gap-8 overflow-x-auto pb-12 snap-x hide-scrollbar">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              className="relative"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="relative min-w-[280px] flex-1 snap-start"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
             >
-              {/* Connector line */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-border -translate-x-4" />
-              )}
+              <div className="text-left">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-4xl md:text-5xl font-heading text-primary/30 font-light">
+                    {step.number}
+                  </span>
+                  {/* Connector line */}
+                  {index < steps.length - 1 && (
+                    <div className="h-px bg-border flex-grow min-w-[4rem] w-full" />
+                  )}
+                </div>
 
-              <div className="text-center lg:text-left">
-                <span className="inline-block text-4xl font-heading text-primary/30 mb-4">
-                  {step.number}
-                </span>
                 <h3 className="font-heading text-xl text-foreground mb-3">
                   {step.title}
                 </h3>
