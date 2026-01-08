@@ -2,32 +2,27 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-wedding.jpg";
 import { TextReveal } from "./TextReveal";
 import { MagneticButton } from "./MagneticButton";
 import { ArrowDown } from "lucide-react";
+import { WavyBackground } from "@/components/ui/wavy-background";
+import { useTheme } from "@/components/ui/theme-provider";
 
 export function Hero() {
-    return (
-        <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
-            {/* Background Image with Parallax-like scale effect on load */}
-            <div className="absolute inset-0 z-0">
-                <motion.div
-                    initial={{ scale: 1.1, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="w-full h-full"
-                >
-                    <img
-                        src={heroImage}
-                        alt="Elegant bride in garden setting during golden hour"
-                        className="w-full h-full object-cover"
-                    />
-                </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-90 h-32 bottom-0 top-auto" />
-            </div>
+    const { theme } = useTheme();
+    const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
+    return (
+        <WavyBackground
+            containerClassName="relative min-h-[100dvh] flex items-center overflow-hidden"
+            className="w-full"
+            colors={isDark ? ["#d4a373", "#e6ccb2", "#9c6644", "#7f5539", "#b08968"] : ["#9c6644", "#7f5539", "#5D3A29", "#4A2F21", "#d4a373"]} // Darker tones for light mode contrast
+            backgroundFill={isDark ? "#1c1917" : "#fafaf9"}
+            waveWidth={60}
+            blur={8}
+            speed="slow"
+            waveOpacity={0.4}
+        >
             {/* Content */}
             <div className="container-studio relative z-10 pt-20">
                 <div className="max-w-3xl">
@@ -38,14 +33,14 @@ export function Hero() {
                         className="flex items-center gap-2 mb-6"
                     >
                         <span className="h-px w-10 bg-primary/80"></span>
-                        <p className="text-label text-white/90 tracking-widest text-sm font-semibold uppercase">
+                        <p className="text-label tracking-widest text-sm font-semibold uppercase">
                             Professional Photography Studio
                         </p>
                     </motion.div>
 
-                    <div className="heading-display text-white mb-8 overflow-hidden">
+                    <div className="heading-display mb-8 overflow-hidden text-foreground">
                         <TextReveal text="Moments That" className="block" delay={0.2} />
-                        <div className="italic font-serif text-primary-foreground/90">
+                        <div className="italic font-serif text-primary">
                             <TextReveal text="Last Forever" delay={0.4} />
                         </div>
                     </div>
@@ -54,7 +49,7 @@ export function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.8, duration: 0.8 }}
-                        className="text-lg md:text-xl text-white/80 leading-relaxed mb-10 max-w-xl font-light"
+                        className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-xl font-light"
                     >
                         We capture weddings, events, portraits, and commercial projects
                         with artistry and care. Every shoot is handled by our experienced
@@ -63,13 +58,13 @@ export function Hero() {
 
                     <div className="flex flex-col sm:flex-row gap-6">
                         <MagneticButton>
-                            <Button variant="default" size="xl" asChild className="bg-white text-black hover:bg-gray-100 rounded-full px-8 h-14 text-base font-medium shadow-lg hover:shadow-xl transition-all">
+                            <Button variant="default" size="xl" asChild className="rounded-full px-8 h-14 text-base font-medium shadow-lg hover:shadow-xl transition-all">
                                 <Link to="/contact">Enquire About Your Shoot</Link>
                             </Button>
                         </MagneticButton>
 
                         <MagneticButton>
-                            <Button variant="outline" size="xl" asChild className="text-white border-white/30 hover:bg-white/10 hover:border-white rounded-full px-8 h-14 text-base backdrop-blur-sm transition-all bg-transparent">
+                            <Button variant="outline" size="xl" asChild className="rounded-full px-8 h-14 text-base backdrop-blur-sm transition-all bg-transparent/10 hover:bg-background/20 border-foreground/20">
                                 <Link to="/portfolio">View Our Work</Link>
                             </Button>
                         </MagneticButton>
@@ -77,14 +72,14 @@ export function Hero() {
                 </div>
             </div>
 
-            {/* Animated Scroll Indicator */}
+            {/* Animated Scroll Indicator - Positioned absolutely relative to the container */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5, duration: 1 }}
                 className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
             >
-                <div className="flex flex-col items-center gap-2 text-white/60">
+                <div className="flex flex-col items-center gap-2 text-muted-foreground">
                     <span className="text-[10px] uppercase tracking-[0.2em] font-medium">Scroll</span>
                     <motion.div
                         animate={{ y: [0, 8, 0] }}
@@ -94,6 +89,6 @@ export function Hero() {
                     </motion.div>
                 </div>
             </motion.div>
-        </section>
+        </WavyBackground>
     );
 }

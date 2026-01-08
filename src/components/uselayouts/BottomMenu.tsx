@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -16,13 +17,13 @@ import { AnimatePresence, motion } from "motion/react";
 import useMeasure from "react-use-measure";
 import { cn } from "@/lib/utils";
 import { Link, useNavigate } from "react-router-dom";
+import { useTheme } from "@/components/ui/theme-provider";
 
 // Adjusted for jd-photomoments
 const MAIN_NAV = [
     { icon: Home01Icon, name: "home", path: "/" },
     { icon: ShoppingBasket01Icon, name: "services", path: "/services" },
     { icon: Image01Icon, name: "portfolio", path: "/portfolio" },
-    { icon: UserEdit01Icon, name: "about", path: "/about" },
     { icon: SentIcon, name: "contact", path: "/contact" },
 ];
 
@@ -40,7 +41,7 @@ const BottomMenu = () => {
         "default" | "theme"
     >("default");
 
-    const [theme, setTheme] = useState<"light" | "dark" | "system">("light");
+    const { theme, setTheme } = useTheme();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -72,8 +73,8 @@ const BottomMenu = () => {
                                 key={key}
                                 onClick={() => setTheme(key as "light" | "dark" | "system")}
                                 className={`flex items-center justify-center gap-2 rounded-[12px] px-3 py-2 transition-all duration-100 ${theme === key
-                                        ? "bg-accent text-foreground"
-                                        : "text-muted-foreground hover:bg-muted"
+                                    ? "bg-accent text-foreground"
+                                    : "text-muted-foreground hover:bg-muted"
                                     }`}
                             >
                                 <HugeiconsIcon
@@ -91,7 +92,7 @@ const BottomMenu = () => {
             default:
                 return null;
         }
-    }, [view, theme, sharedHover]);
+    }, [view, theme, sharedHover, setTheme]);
 
     return (
         <div

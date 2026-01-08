@@ -12,7 +12,7 @@ const stats = [
 
 export function TrustSection() {
   return (
-    <section className="section-padding bg-foreground text-background">
+    <section className="section-padding bg-foreground text-background dark:bg-card dark:text-foreground transition-colors duration-300">
       <div className="container-studio">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image */}
@@ -28,11 +28,11 @@ export function TrustSection() {
 
           {/* Content */}
           <div className="order-1 lg:order-2">
-            <p className="text-label text-background/60 mb-4">Why Choose Us</p>
-            <h2 className="heading-section text-background mb-6">
+            <p className="text-label text-background/60 dark:text-primary mb-4">Why Choose Us</p>
+            <h2 className="heading-section text-background dark:text-foreground mb-6">
               A Studio You Can Trust
             </h2>
-            <p className="text-lg text-background/70 leading-relaxed mb-8">
+            <p className="text-lg text-background/70 dark:text-muted-foreground leading-relaxed mb-8">
               With over a decade of experience, our team has developed refined
               workflows and a consistent approach that delivers beautiful results
               every time. We understand the importance of your moments and treat
@@ -43,17 +43,17 @@ export function TrustSection() {
             <div className="grid grid-cols-2 gap-6 mb-10">
               {stats.map((stat) => (
                 <div key={stat.label}>
-                  <span className="block font-heading text-4xl text-background mb-1">
+                  <span className="block font-heading text-4xl text-background dark:text-foreground mb-1">
                     <Counter to={stat.value} suffix={stat.suffix} />
                   </span>
-                  <span className="text-sm text-background/60">
+                  <span className="text-sm text-background/60 dark:text-muted-foreground">
                     {stat.label}
                   </span>
                 </div>
               ))}
             </div>
 
-            <Button variant="outline" size="lg" asChild className="border-background text-background hover:bg-background hover:text-foreground">
+            <Button variant="outline" size="lg" asChild className="border-background text-background hover:bg-background hover:text-foreground dark:border-border dark:text-foreground dark:hover:bg-accent dark:hover:text-accent-foreground">
               <Link to="/about">Learn About Our Studio</Link>
             </Button>
           </div>

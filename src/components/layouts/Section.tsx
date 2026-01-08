@@ -25,7 +25,7 @@ export function Section({
         size === "lg" && "section-padding",
         tone === "default" && "bg-background text-foreground",
         tone === "muted" && "bg-card text-foreground",
-        tone === "inverse" && "bg-foreground text-background",
+        tone === "inverse" && "bg-foreground text-background dark:bg-card dark:text-foreground",
         className,
       )}
     >
