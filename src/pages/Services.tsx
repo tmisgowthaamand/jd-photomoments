@@ -166,21 +166,15 @@ const Services = () => {
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
-                    className="inline-flex items-center gap-3 px-4 py-2 rounded-full border mb-6"
-                    style={{
-                      borderColor: `${service.color}40`,
-                      backgroundColor: `${service.color}10`,
-                    }}
+                    className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-primary/20 bg-primary/10 mb-6"
                   >
                     <div
-                      className="w-8 h-8 rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: service.color }}
+                      className="w-8 h-8 rounded-full flex items-center justify-center bg-primary"
                     >
-                      <Icon className="w-4 h-4 text-white" />
+                      <Icon className="w-4 h-4 text-primary-foreground" />
                     </div>
                     <span
-                      className="text-sm font-medium"
-                      style={{ color: service.color }}
+                      className="text-sm font-medium text-primary"
                     >
                       {service.subtitle}
                     </span>
@@ -197,10 +191,7 @@ const Services = () => {
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <span
-                          className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
-                          style={{ backgroundColor: service.color }}
-                        />
+                        <span className="w-2 h-2 rounded-full mt-2 flex-shrink-0 bg-primary" />
                         <span className="text-sm text-muted-foreground">{feature}</span>
                       </li>
                     ))}

@@ -213,21 +213,15 @@ export function FeatureCarousel() {
                                 className="space-y-6"
                             >
                                 <motion.div
-                                    className="inline-flex items-center gap-3 px-4 py-2 rounded-full border"
-                                    style={{
-                                        borderColor: `${activeFeature.accent}40`,
-                                        backgroundColor: `${activeFeature.accent}10`,
-                                    }}
+                                    className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-primary/20 bg-primary/10"
                                 >
                                     <div
-                                        className="w-8 h-8 rounded-full flex items-center justify-center"
-                                        style={{ backgroundColor: activeFeature.accent }}
+                                        className="w-8 h-8 rounded-full flex items-center justify-center bg-primary"
                                     >
-                                        <activeFeature.icon className="w-4 h-4 text-white" />
+                                        <activeFeature.icon className="w-4 h-4 text-primary-foreground" />
                                     </div>
                                     <span
-                                        className="text-sm font-medium"
-                                        style={{ color: activeFeature.accent }}
+                                        className="text-sm font-medium text-primary"
                                     >
                                         Featured Service
                                     </span>

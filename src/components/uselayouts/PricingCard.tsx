@@ -171,7 +171,7 @@ export function PricingCard() {
                                         <motion.div
                                             initial={{ scale: 0 }}
                                             animate={{ scale: 1 }}
-                                            className="px-4 py-1.5 bg-gradient-to-r from-primary to-pink-500 text-white text-xs font-bold rounded-full shadow-lg"
+                                            className="px-4 py-1.5 bg-gradient-to-r from-primary to-primary/80 text-white text-xs font-bold rounded-full shadow-lg"
                                         >
                                             Most Popular
                                         </motion.div>
@@ -200,16 +200,6 @@ export function PricingCard() {
                                     </AnimatePresence>
                                 </motion.div>
 
-                                {/* Icon */}
-                                <div
-                                    className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
-                                    style={{ backgroundColor: `${tier.accentColor}20` }}
-                                >
-                                    <Icon
-                                        className="w-7 h-7"
-                                        style={{ color: tier.accentColor }}
-                                    />
-                                </div>
 
                                 {/* Tier Name */}
                                 <h3 className="text-xl font-heading font-semibold text-foreground mb-2">
@@ -252,12 +242,10 @@ export function PricingCard() {
                                             className="flex items-center gap-3 text-sm text-muted-foreground"
                                         >
                                             <div
-                                                className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                                                style={{ backgroundColor: `${tier.accentColor}20` }}
+                                                className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 bg-primary/20"
                                             >
                                                 <Check
-                                                    className="w-3 h-3"
-                                                    style={{ color: tier.accentColor }}
+                                                    className="w-3 h-3 text-primary"
                                                 />
                                             </div>
                                             {feature}

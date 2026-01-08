@@ -47,7 +47,7 @@ const TABS: TabItem[] = [
                 { label: "Events Covered", value: "1000+" },
             ],
         },
-        color: "#F472B6",
+        color: "#FBBF24",
     },
     {
         id: "process",
@@ -66,7 +66,7 @@ const TABS: TabItem[] = [
             ],
             image: eventImage,
         },
-        color: "#60A5FA",
+        color: "#FBBF24",
     },
     {
         id: "team",
@@ -84,7 +84,7 @@ const TABS: TabItem[] = [
             ],
             image: portraitImage,
         },
-        color: "#34D399",
+        color: "#FBBF24",
     },
     {
         id: "quality",

@@ -196,9 +196,9 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-label text-background/60 mb-4">The Team Approach</p>
-            <h2 className="heading-section text-background mb-6">Why a Studio, Not a Solo Photographer</h2>
-            <div className="space-y-4 text-background/70">
+            <p className="text-label text-white/60 mb-4">The Team Approach</p>
+            <h2 className="heading-section text-white mb-6">Why a Studio, Not a Solo Photographer</h2>
+            <div className="space-y-4 text-white/70">
               <p>
                 When you work with JD Photomoments, you benefit from the combined
                 expertise of our entire team. For larger events, multiple photographers
