@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import studioTeam from '@/assets/studio-team.jpg';
+import { Counter } from '@/components/uselayouts/Counter';
 
 const stats = [
-  { value: '12+', label: 'Years of Experience' },
-  { value: '500+', label: 'Events Covered' },
-  { value: '150+', label: 'Weddings Captured' },
-  { value: '8', label: 'Team Members' },
+  { value: 12, suffix: '+', label: 'Years of Experience' },
+  { value: 500, suffix: '+', label: 'Events Covered' },
+  { value: 150, suffix: '+', label: 'Weddings Captured' },
+  { value: 8, suffix: '', label: 'Team Members' },
 ];
 
 export function TrustSection() {
@@ -32,9 +33,9 @@ export function TrustSection() {
               A Studio You Can Trust
             </h2>
             <p className="text-lg text-background/70 leading-relaxed mb-8">
-              With over a decade of experience, our team has developed refined 
-              workflows and a consistent approach that delivers beautiful results 
-              every time. We understand the importance of your moments and treat 
+              With over a decade of experience, our team has developed refined
+              workflows and a consistent approach that delivers beautiful results
+              every time. We understand the importance of your moments and treat
               each project with the care it deserves.
             </p>
 
@@ -43,7 +44,7 @@ export function TrustSection() {
               {stats.map((stat) => (
                 <div key={stat.label}>
                   <span className="block font-heading text-4xl text-background mb-1">
-                    {stat.value}
+                    <Counter to={stat.value} suffix={stat.suffix} />
                   </span>
                   <span className="text-sm text-background/60">
                     {stat.label}
@@ -52,7 +53,7 @@ export function TrustSection() {
               ))}
             </div>
 
-            <Button variant="studioOutline" size="lg" asChild className="border-background text-background hover:bg-background hover:text-foreground">
+            <Button variant="outline" size="lg" asChild className="border-background text-background hover:bg-background hover:text-foreground">
               <Link to="/about">Learn About Our Studio</Link>
             </Button>
           </div>

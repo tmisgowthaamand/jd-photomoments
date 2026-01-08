@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { motion } from "motion/react";
 import { ArrowRight } from 'lucide-react';
 import weddingImage from '@/assets/hero-wedding.jpg';
 import eventImage from '@/assets/event-sample.jpg';
@@ -50,8 +51,8 @@ export function ServicesPreview() {
             Photography Services
           </h2>
           <p className="text-body">
-            From intimate portraits to grand celebrations, our studio delivers 
-            consistent quality across every type of shoot. Each project receives 
+            From intimate portraits to grand celebrations, our studio delivers
+            consistent quality across every type of shoot. Each project receives
             our full attention and expertise.
           </p>
         </div>
@@ -59,55 +60,68 @@ export function ServicesPreview() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.slice(0, 3).map((service, index) => (
-            <Link
+            <motion.div
               key={service.title}
-              to={service.href}
-              className="group block"
-              style={{ animationDelay: `${index * 100}ms` }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
             >
-              <div className="image-hover aspect-[4/5] mb-5 bg-muted">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="font-heading text-2xl text-foreground mb-2 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-body-sm mb-3">{service.description}</p>
-              <span className="inline-flex items-center gap-2 text-sm text-primary font-medium">
-                Learn more <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Link>
-          ))}
-        </div>
-
-        {/* Secondary Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-          {services.slice(3).map((service, index) => (
-            <Link
-              key={service.title}
-              to={service.href}
-              className="group flex gap-6 p-6 bg-card hover:bg-accent/50 transition-colors"
-            >
-              <div className="image-hover w-32 h-32 flex-shrink-0 bg-muted">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-heading text-xl text-foreground mb-2 group-hover:text-primary transition-colors">
+              <Link
+                to={service.href}
+                className="group block"
+              >
+                <div className="image-hover aspect-[4/5] mb-5 bg-muted">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="font-heading text-2xl text-foreground mb-2 group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-body-sm mb-3">{service.description}</p>
                 <span className="inline-flex items-center gap-2 text-sm text-primary font-medium">
                   Learn more <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </span>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Secondary Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {services.slice(3).map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <Link
+                to={service.href}
+                className="group flex gap-6 p-6 bg-card hover:bg-accent/50 transition-colors"
+              >
+                <div className="image-hover w-32 h-32 flex-shrink-0 bg-muted">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading text-xl text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-body-sm mb-3">{service.description}</p>
+                  <span className="inline-flex items-center gap-2 text-sm text-primary font-medium">
+                    Learn more <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
 

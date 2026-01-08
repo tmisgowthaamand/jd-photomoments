@@ -8,6 +8,8 @@ interface LayoutProps {
   children: ReactNode;
 }
 
+import BottomMenu from '../uselayouts/BottomMenu';
+
 export function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
@@ -17,6 +19,7 @@ export function Layout({ children }: LayoutProps) {
       </main>
       <Footer />
       <ScrollToTop />
+      <BottomMenu />
       <ChatBot />
     </div>
   );

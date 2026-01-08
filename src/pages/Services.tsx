@@ -1,6 +1,14 @@
 import { Layout } from '@/components/layout/Layout';
+import { motion } from "motion/react";
+import { Section } from '@/components/layouts/Section';
+import { PageHeader } from '@/components/layouts/PageHeader';
+import { CTA } from '@/components/layouts/CTA';
+import { FluidExpandingGrid } from '@/components/uselayouts/FluidExpandingGrid';
+import { PricingCard } from '@/components/uselayouts/PricingCard';
+import { DiscoverButton } from '@/components/uselayouts/DiscoverButton';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Camera, Heart, Users, User, Building2 } from 'lucide-react';
+
 import weddingImage from '@/assets/hero-wedding.jpg';
 import preweddingImage from '@/assets/prewedding-sample.jpg';
 import eventImage from '@/assets/event-sample.jpg';
@@ -22,6 +30,8 @@ const services = [
       'Online gallery for sharing',
     ],
     image: weddingImage,
+    icon: Heart,
+    color: '#F472B6',
   },
   {
     id: 'pre-weddings',
@@ -37,6 +47,8 @@ const services = [
       'Print-ready files',
     ],
     image: preweddingImage,
+    icon: Camera,
+    color: '#A78BFA',
   },
   {
     id: 'events',
@@ -52,6 +64,8 @@ const services = [
       'On-site printing options',
     ],
     image: eventImage,
+    icon: Users,
+    color: '#60A5FA',
   },
   {
     id: 'portraits',
@@ -67,6 +81,8 @@ const services = [
       'Multiple format delivery',
     ],
     image: portraitImage,
+    icon: User,
+    color: '#34D399',
   },
   {
     id: 'commercial',
@@ -82,47 +98,59 @@ const services = [
       'Social media content',
     ],
     image: commercialImage,
+    icon: Building2,
+    color: '#FBBF24',
   },
 ];
 
 const Services = () => {
   return (
     <Layout>
-      {/* Page Header */}
-      <section className="section-padding-sm bg-card">
-        <div className="container-studio">
-          <div className="max-w-3xl">
-            <p className="text-label mb-4">Our Services</p>
-            <h1 className="heading-display text-foreground mb-6">
+      <Section tone="muted" size="sm">
+        <PageHeader
+          eyebrow="Our Services"
+          title={
+            <>
               Photography<br />
               <span className="italic">Services</span>
-            </h1>
-            <p className="text-body text-lg">
-              From weddings to commercial projects, our studio offers comprehensive 
-              photography services tailored to your needs. Each service is delivered 
+            </>
+          }
+          description={
+            <>
+              From weddings to commercial projects, our studio offers comprehensive
+              photography services tailored to your needs. Each service is delivered
               with the same commitment to quality and professionalism.
-            </p>
-          </div>
-        </div>
-      </section>
+            </>
+          }
+        />
+      </Section>
 
-      {/* Services List */}
+      {/* Fluid Expanding Grid - Modern Service Showcase */}
+      <FluidExpandingGrid />
+
+      {/* Detailed Services List */}
       <section className="bg-background">
-        {services.map((service, index) => (
-          <div
-            key={service.id}
-            id={service.id}
-            className={`section-padding border-t border-border ${
-              index % 2 === 1 ? 'bg-card' : 'bg-background'
-            }`}
-          >
-            <div className="container-studio">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${
-                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-              }`}>
+        {services.map((service, index) => {
+          const Icon = service.icon;
+          return (
+            <Section
+              key={service.id}
+              tone={index % 2 === 1 ? "muted" : "default"}
+              className="border-t border-border"
+              containerClassName=""
+            >
+              <motion.div
+                id={service.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                  }`}
+              >
                 {/* Image */}
                 <div className={`${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className="image-hover aspect-[4/3]">
+                  <div className="image-hover aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
                     <img
                       src={service.image}
                       alt={service.title}
@@ -133,7 +161,31 @@ const Services = () => {
 
                 {/* Content */}
                 <div className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <p className="text-label mb-4">{service.subtitle}</p>
+                  {/* Icon Badge */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    className="inline-flex items-center gap-3 px-4 py-2 rounded-full border mb-6"
+                    style={{
+                      borderColor: `${service.color}40`,
+                      backgroundColor: `${service.color}10`,
+                    }}
+                  >
+                    <div
+                      className="w-8 h-8 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: service.color }}
+                    >
+                      <Icon className="w-4 h-4 text-white" />
+                    </div>
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: service.color }}
+                    >
+                      {service.subtitle}
+                    </span>
+                  </motion.div>
+
                   <h2 className="heading-section text-foreground mb-6">
                     {service.title}
                   </h2>
@@ -145,44 +197,50 @@ const Services = () => {
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <span
+                          className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
+                          style={{ backgroundColor: service.color }}
+                        />
                         <span className="text-sm text-muted-foreground">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 text-primary hover:text-foreground transition-colors font-medium"
+                  <DiscoverButton
+                    href="/contact"
+                    variant="primary"
+                    size="md"
                   >
-                    Enquire About {service.title.split(' ')[0]} <ArrowRight className="h-4 w-4" />
-                  </Link>
+                    Enquire About {service.title.split(' ')[0]}
+                  </DiscoverButton>
                 </div>
-              </div>
-            </div>
-          </div>
-        ))}
+              </motion.div>
+            </Section>
+          );
+        })}
       </section>
 
+      {/* Pricing Section */}
+      <PricingCard />
+
       {/* CTA */}
-      <section className="section-padding bg-foreground text-background">
-        <div className="container-narrow text-center">
-          <h2 className="heading-section text-background mb-6">
-            Not Sure What You Need?
-          </h2>
-          <p className="text-lg text-background/70 max-w-xl mx-auto mb-10">
-            Get in touch and we'll help you determine the best approach for your 
-            project. We're happy to discuss your requirements without obligation.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-3 text-background hover:text-background/80 transition-colors"
-          >
-            <span className="text-label text-background/80">Get in Touch</span>
-            <ArrowRight className="h-5 w-5" />
-          </Link>
+      <Section tone="inverse">
+        <div className="container-narrow">
+          <CTA
+            title="Not Sure What You Need?"
+            description={
+              <>
+                Get in touch and we'll help you determine the best approach for your
+                project. We're happy to discuss your requirements without obligation.
+              </>
+            }
+            primaryHref="/contact"
+            primaryLabel="Get in Touch"
+            secondaryHref="/portfolio"
+            secondaryLabel="See Recent Work"
+          />
         </div>
-      </section>
+      </Section>
     </Layout>
   );
 };

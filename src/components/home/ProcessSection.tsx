@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 const steps = [
   {
     number: '01',
@@ -37,8 +39,8 @@ export function ProcessSection() {
             A Seamless Process
           </h2>
           <p className="text-body">
-            From initial enquiry to final delivery, we ensure a smooth, 
-            professional experience. Our organized approach means you can 
+            From initial enquiry to final delivery, we ensure a smooth,
+            professional experience. Our organized approach means you can
             focus on what matters while we handle the rest.
           </p>
         </div>
@@ -46,12 +48,19 @@ export function ProcessSection() {
         {/* Process Steps */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-4">
           {steps.map((step, index) => (
-            <div key={step.number} className="relative">
+            <motion.div
+              key={step.number}
+              className="relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+            >
               {/* Connector line */}
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-border -translate-x-4" />
               )}
-              
+
               <div className="text-center lg:text-left">
                 <span className="inline-block text-4xl font-heading text-primary/30 mb-4">
                   {step.number}
@@ -63,7 +72,7 @@ export function ProcessSection() {
                   {step.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
