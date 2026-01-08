@@ -13,6 +13,7 @@ export const WavyBackground = ({
   blur = 10,
   speed = "fast",
   waveOpacity = 0.5,
+  waveYPos = 0.5,
   ...props
 }: {
   children?: React.ReactNode;
@@ -24,6 +25,7 @@ export const WavyBackground = ({
   blur?: number;
   speed?: "slow" | "fast";
   waveOpacity?: number;
+  waveYPos?: number;
   [key: string]: any;
 }) => {
 
@@ -80,7 +82,7 @@ export const WavyBackground = ({
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
         var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+        ctx.lineTo(x, y + h * waveYPos); // adjust for height
       }
       ctx.stroke();
       ctx.closePath();
@@ -101,7 +103,7 @@ export const WavyBackground = ({
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [colors, backgroundFill, waveWidth, blur, speed, waveOpacity]);
+  }, [colors, backgroundFill, waveWidth, blur, speed, waveOpacity, waveYPos]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {

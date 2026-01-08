@@ -18,10 +18,11 @@ export function Hero() {
             className="w-full"
             colors={isDark ? ["#d4a373", "#e6ccb2", "#9c6644", "#7f5539", "#b08968"] : ["#9c6644", "#7f5539", "#5D3A29", "#4A2F21", "#d4a373"]} // Darker tones for light mode contrast
             backgroundFill={isDark ? "#1c1917" : "#fafaf9"}
-            waveWidth={60}
+            waveWidth={50}
             blur={8}
             speed="slow"
-            waveOpacity={0.4}
+            waveOpacity={0.3}
+            waveYPos={0.75}
         >
             {/* Content */}
             <div className="container-studio relative z-10 pt-20">
@@ -49,7 +50,7 @@ export function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.8, duration: 0.8 }}
-                        className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-xl font-light"
+                        className="text-lg md:text-xl text-foreground font-medium leading-relaxed mb-10 max-w-xl"
                     >
                         We capture weddings, events, portraits, and commercial projects
                         with artistry and care. Every shoot is handled by our experienced
